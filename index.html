@@ -6,15 +6,15 @@
 		<style>
 			@font-face {
   				font-family: "SF-Rounded";
-  				src: url("https://f1248.github.io/SF-Rounded.otf");
+  				src: url("https://f1248.github.io/fonts/SF-Rounded.otf");
 			}
 			@font-face {
 				font-family: "SF-Rounded-Bold";
-				src: url("https://f1248.github.io/SF-Rounded-Bold.otf");
+				src: url("https://f1248.github.io/fonts/SF-Rounded-Bold.otf");
 			}
 			@font-face {
   				font-family: "SF-Mono";
-  				src: url("https://f1248.github.io/SF-Mono.otf");
+  				src: url("https://f1248.github.io/fonts/SF-Mono.otf");
 			}
 			h1 {
 				font-family: "SF-Rounded-Bold";
@@ -212,12 +212,12 @@
 			</script>
 		</form>
 		<form method="post" name="ot" class="callout" id="ot" autocapitalize="none" onsubmit="setvals();otpassword.value = b64_sha256(customRoot.value+&#39;:&#39;+ CustomSite.value).substr(0,20); if(customRoot.value.length==0 || customRoot.value==null){otpassword.value = &#39;&#39;}; document.ot.otpassword.focus(); document.ot.otpassword.select(); return false;">
-<					<input name="passwd" id="customRoot" type="hidden" value="">
-			<label style="margin-top: 6px;">Custom: </label> 
-			<input name="CustomSite" id="custid" class="sitebox" autocapitalize="none" onkeyup="otpassword.value = &#39;&#39;;" tabindex="3">
-			<input name="otpassword" id="otpass" class="pass" readonly onclick="highlight(this);" tabindex="5">
-			&nbsp;&nbsp;
-			<input type="submit" class="genbtn" value="Generieren" tabindex="4">
+		<input name="passwd" id="customRoot" type="hidden" value="">
+		<label style="margin-top: 6px;">Custom: </label> 
+		<input name="CustomSite" id="custid" class="sitebox" autocapitalize="none" onkeyup="otpassword.value = &#39;&#39;;" tabindex="3">
+		<input name="otpassword" id="otpass" class="pass" readonly onclick="highlight(this);" tabindex="5">
+		&nbsp;&nbsp;
+		<input type="submit" class="genbtn" value="Generieren" tabindex="4">
 		</form>
 		<p>Diese Webseite wurde <a href="https://ss64.com/pass/">ursprünglich</a> von <a href="https://ss64.com/docs/">Simon Sheppard</a> geschrieben und von mir, <a href="https://github.com/F1248">F1248</a>, verändert, übersetzt und überprüft.</p>
 		<p>Die Webseite rechnet ein Masterpasswort zusammen mit einem Webseitennamen in ein Webseitenpasswort um.<br>
