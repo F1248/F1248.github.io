@@ -186,7 +186,7 @@
 					document.getElementById('main').style.display = 'inline';
 				}
 			}
-			function copyTo ^(source, destination) {
+			function copyTo (source, destination) {
 				document.m[destination].value = source.value;
 			}
 			window.onbeforeunload = function () {}
@@ -213,7 +213,7 @@
 		</form>
 		<form method="post" name="ot" class="callout" id="ot" autocapitalize="none" onsubmit="setvals();otpassword.value = b64_sha256(customRoot.value+&#39;:&#39;+ CustomSite.value).substr(0,20); if(customRoot.value.length==0 || customRoot.value==null){otpassword.value = &#39;&#39;}; document.ot.otpassword.focus(); document.ot.otpassword.select(); return false;">
 		<input name="passwd" id="customRoot" type="hidden" value="">
-		<label style="margin-top: 6px;">Custom: </label> 
+		<label style="margin-top: 6px;">Eigenes Passwort: </label> 
 		<input name="CustomSite" id="custid" class="sitebox" autocapitalize="none" onkeyup="otpassword.value = &#39;&#39;;" tabindex="3">
 		<input name="otpassword" id="otpass" class="pass" readonly onclick="highlight(this);" tabindex="5">
 		&nbsp;&nbsp;
