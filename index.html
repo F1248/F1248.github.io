@@ -34,11 +34,12 @@
 		<script type="text/javascript" src="https://f1248.github.io/crypto-js/crypto-js.js"></script>
 </head>
 	<body> 
-		<p>Gib einen Text ein und klicke auf "Konvertieren", um den SHA-256 Hashwert zu erhalten:</p>
-		<input type="text" id="inputText" placeholder="Gib einen Text ein">
-		<button onclick="calculateHash()">Hash berechnen</button>
-		<p id="hashResult">Hallo!</p>
 		<h1>Passwort-Generator</h1>
+		<p>Gib einen Text ein und klicke auf "Konvertieren", um den SHA-256 Hashwert zu erhalten:</p>
+		<input type="text" id="masterPassword" placeholder="Masterpasswort">
+		<input type="text" id="websiteName" placeholder="Webseitenname">
+		<button onclick="calculateHash()">Hash berechnen</button>
+		<p id="websitePassword"></p>
 		<p>Die Webseite rechnet ein Masterpasswort zusammen mit einem Webseitennamen in ein Webseitenpasswort um.<br>
 			Nur wenn die Kobination aus Masterpasswort und Webseitennamen idetisch sind, entsteht das selbe Webseitenpasswort.<br>
 			<b>Achtung!</b> Die Groß- und Kleinschreibung ist hier entscheidet, auch <span class="code">O</span> und <span class="code">0</span> sowie <span class="code">I</span> und <span class="code">l</span> dürfen nicht verwechselt werden!<br/>
@@ -57,9 +58,11 @@
 		<p><a href="https://github.com/F1248">F1248</a>, 2023</p>
 		<script type="text/javascript">
 			function calculateHash() {
-				var inputText = document.getElementById("inputText").value;
-				var hash = CryptoJS.SHA256(inputText).toString();
-				document.getElementById("hashResult").textContent = "Hashwert: " + hash;
+				var masterPassword = document.getElementById("masterPassword").value;
+				var websiteName = document.getElementById("websiteName").value;
+				var string = masterPassword + websiteName
+				var hash = CryptoJS.SHA256(string).toString();
+				document.getElementById("websitePassword").textContent = "Hashwert: " + hash;
 			}
 		</script>
 	</body>
