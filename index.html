@@ -35,11 +35,10 @@
 </head>
 	<body> 
 		<h1>Passwort-Generator</h1>
-		<p>Gib einen Text ein und klicke auf "Konvertieren", um den SHA-256 Hashwert zu erhalten:</p>
 		<input type="text" id="masterPassword" placeholder="Masterpasswort">
 		<input type="text" id="websiteName" placeholder="Webseitenname">
-		<button onclick="calculateHash()">Hash berechnen</button>
-		<p id="websitePassword"></p>
+		<button onclick="calculatePassword()">Passwort berechnen</button>
+		<p id="password">Passwort: </p>
 		<p>Die Webseite rechnet ein Masterpasswort zusammen mit einem Webseitennamen in ein Webseitenpasswort um.<br>
 			Nur wenn die Kobination aus Masterpasswort und Webseitennamen idetisch sind, entsteht das selbe Webseitenpasswort.<br>
 			<b>Achtung!</b> Die Groß- und Kleinschreibung ist hier entscheidet, auch <span class="code">O</span> und <span class="code">0</span> sowie <span class="code">I</span> und <span class="code">l</span> dürfen nicht verwechselt werden!<br/>
@@ -57,12 +56,26 @@
 		</ul>
 		<p><a href="https://github.com/F1248">F1248</a>, 2023</p>
 		<script type="text/javascript">
-			function calculateHash() {
-				var masterPassword = document.getElementById("masterPassword").value;
-				var websiteName = document.getElementById("websiteName").value;
-				var string = masterPassword + websiteName
-				var hash = CryptoJS.SHA256(string).toString();
-				document.getElementById("websitePassword").textContent = "Hashwert: " + hash;
+			const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-#";
+			function calculatePassword() {
+				let masterPassword = document.getElementById("masterPassword").value;
+				let websiteName = document.getElementById("websiteName").value;
+				let string = masterPassword + websiteName;
+				let hash = CryptoJS.SHA256(string).toString();
+				let password = "" 
+				for (let character = 0; character < 16; character++) {
+  					let hex1_index = character * 2;
+					let hex2_index = hex1_index + 1;
+					let hex1 = hash[hex1_index]
+					let hex2 = hash[hex2_index]
+					let hex = hex1 + hex2;
+					let binary_long = parseInt(hex, 16).toString(2)
+					let binary = binary_long.slice(0, 6)
+					let dezimal = parseInt(binary, 2);
+					password = password + characters[dezimal];
+					console.log(hex, binary_long, binary, dezimal, characters[dezimal])
+				}
+				document.getElementById("password").textContent = "Passwort: " + password;
 			}
 		</script>
 	</body>
