@@ -1,2 +1,2 @@
 # Passwort-Generator
-Für weiter Informationen siehe [f1248.github.io](https://f1248.github.io).
+Siehe [f1248.github.io](https://f1248.github.io) für weitere Informationen.
