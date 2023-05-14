@@ -20,11 +20,18 @@
 				font-family: "SF-Rounded-Bold";
 				font-size: 32 px;
 			}
-			p, span {
+			h2 {
+				font-family: "SF-Rounded-Bold";
+				font-size: 24 px;
+			}
+			p, span, label, input {
 				font-family: "SF-Rounded";
 				font-size: 16 px;
+				margin: 4px;
 			}
-			#masterPassword, #websiteName {
+			#masterPassword, #websiteName, #websitePassword {
+				font-family: "SF-Mono";
+				border-radius: 4px;
 				width: 256px;
 			}
 			.code {
@@ -38,34 +45,57 @@
 	</head>
 	<body> 
 		<h1>Passwort-Generator</h1>
-		<input type="text" id="masterPassword" placeholder="Masterpasswort">
-		<input type="text" id="websiteName" placeholder="Webseitenname">
+		<label for="masterPassword">Masterpasswort:</label>
+		<input type="password" id="masterPassword">
+		<input type="checkbox" id="showMasterPassword">
+		<label for="showMasterPassword">Masterpasswort anzeigen</label>
+		<br>
+		<label for="websiteName">Webseitenname:</label>
+		<input type="text" id="websiteName">
 		<button onclick="calculatePassword()">Passwort berechnen</button>
-		<p id="password">Passwort: </p>
-		<p>Die Webseite rechnet ein Masterpasswort zusammen mit einem Webseitennamen in ein Webseitenpasswort um.<br>
-			Nur wenn die Kobination aus Masterpasswort und Webseitennamen idetisch sind, entsteht das selbe Webseitenpasswort.<br>
-			<b>Achtung!</b> Die Groß- und Kleinschreibung ist hier entscheidet, auch <span class="code">O</span> und <span class="code">0</span> sowie <span class="code">I</span> und <span class="code">l</span> dürfen nicht verwechselt werden!<br/>
-			Das Programm macht sich ein mathematishce Phänomen zu nutzen, durch das dieser Vorgang irreversibel ist, dass heißt das sich aus dem Webseitenpasswort weder das Masterpasswort noch der Webseitenname herausfinden lässt.<br>
+		<br>
+		<label for="websitePassword">Webseitenpasswort:</label>
+		<input type="text" id="websitePassword" readonly>
+		<h2>Was ist das?</h2>
+		<p>
+			Diese Webseite berechnet aus einem Masterpasswort in Kombination mit einem Webseitennamen ein Webseitenpasswort.<br>
+			Immer wenn die Kobination aus Masterpasswort und Webseitennamen idetisch sind, wird das selbe Webseitenpasswort berechnet, anderenfalls ein komplett anderes.<br>
+			<b>Achtung!</b> Die Groß- und Kleinschreibung ist hier entscheidet, auch <span class="code">O</span> und <span class="code">0</span> sowie <span class="code">I</span> und <span class="code">l</span> dürfen nicht verwechselt werden!
 		</p>
-		<p>Fragen:</p>
+		<h2>Wie funktioiert das?</h2>
+		<p>
+			Diese Webseite nutzt eine kryptographische Hashfunktion names SHA-256, welche unter Anderem vom <a href="https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR02102/BSI-TR-02102.pdf?__blob=publicationFile">Bundesamt für Sicherheit in der Informationstechnik</a> und vom <a href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">National Institute of Standards and Technology</a> als kryptographisch stark eingestuft wird. Das bedeutet, dass diese Berechnung nach heutigem technoligischem Stand irreversibel ist. Aus einem Webseitenpasswort kann also weder das Masterpasswort noch der Webseitenname berechnet werden.<br>
+		</p>
+		<h2>Fragen:</h2>
 		<ul>
-			<p>Was passiert mit meinen Passwörtern?<br>
-			Deine Passwörter werden nirgends gespeichert, sondern jedes Mal aus Deinem Masterpasswort und dem Webseitennamen neu berechnet. Ist die Kobination identisch, entsteht das selbe Passwort. Deine Passwörter werden dazu niemals hochgeladen, die komplette Berechenung findet auf Deinem Gerät statt.
+			<p>
+				Was passiert mit meinen Passwörtern?<br>
+				Deine Daten werden nirgends gespeichert, sondern jedes Mal aus Deinem Masterpasswort und dem Webseitennamen neu berechnet. Ist die Kobination identisch, entsteht das selbe Webseitenpasswort. Die komplette Berechenung findet auf Deinem Gerät statt.
 			</p>
-			<p>Kann ich mein Masterpasswort ändern?<br>
-			Nein, Du kannst Dein Masterpasswort nicht änderen, ohne dass sich auch alle Deine Webseitenpasswörter ändern. Ich empfele Dir daher alle paar Jahre ein neues Masterpasswort zu erstellen und dann alle Webseite auf das jeweilige neu generierte Webseitenpasswort zu ändern.</p>
-			<p>Kann ich mein Webseitenpasswort ändern?<br>
-			Nein, es wird jedes mal das gleich Webseitenpasswort generiert, wenn die Kombination aus Deinem Masterpasswort und dem Webseitenname identisch sind. Du kannst aber an Passwörter, die du öfter ändern möchstest eine (Jahres-) Zahl anhängen, wie zum Beispiel <span class="code">PayPal22</span>, <span class="code">PayPal23</span>, <span class="code">PayPal...</span>, damit Du jedes Jahr ein neues Webseitenpassort verwenden kannst.</p>
+			<p>
+				Kann ich mein Masterpasswort ändern?<br>
+				Nein, Du kannst Dein Masterpasswort nicht änderen, ohne dass sich auch alle Deine Webseitenpasswörter ändern. Deshalb soltest Du alle paar Jahre ein neues Masterpasswort erstellen und dann alle Webseite auf ihr neu berechnetes Webseitenpasswort zu ändern.</p>
+			<p>
+				Kann ich mein Webseitenpasswort ändern?<br>
+				Nein, es wird jedes mal das gleiche Webseitenpasswort berechnet, wenn die Kombination aus Deinem Masterpasswort und dem Webseitenname identisch sind. Du kannst aber an Passwörter, die du oft ändern möchstest eine (Jahres-) Zahl anhängen, wie zum Beispiel <span class="code">PayPal22</span>, <span class="code">PayPal23</span>, <span class="code">PayPal...</span>, damit Du jedes Jahr ein neues Webseitenpassort verwenden kannst, das du dann auf der Webseite änden musst.</p>
 		</ul>
-		<p><a href="https://github.com/F1248">F1248</a>, 2023</p>
+		<p>2023, erstellt von <a href="https://github.com/F1248">F1248</a></p>
+		<p><a href="https://github.com/F1248/F1248.github.io">Quellcode auf Github</a></p>
 		<script>
-			const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-#";
+			document.getElementById("showMasterPassword").addEventListener("change", function() {
+		  		if (document.getElementById("showMasterPassword").checked) {
+					document.getElementById("masterPassword").type = "text";
+		  		} else {
+					document.getElementById("masterPassword").type = "password";
+		  		}
+			});
 			function calculatePassword() {
+				const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-#";
 				let masterPassword = document.getElementById("masterPassword").value;
 				let websiteName = document.getElementById("websiteName").value;
 				let string = masterPassword + websiteName;
 				let hash = CryptoJS.SHA256(string).toString();
-				let password = "" 
+				let websitePassword = "" 
 				for (let character = 0; character < 16; character++) {
   					let hex1_index = character * 2;
 					let hex2_index = hex1_index + 1;
@@ -75,10 +105,9 @@
 					let binary_long = parseInt(hex, 16).toString(2)
 					let binary = binary_long.slice(0, 6)
 					let dezimal = parseInt(binary, 2);
-					password = password + characters[dezimal];
-					console.log(hex, binary_long, binary, dezimal, characters[dezimal])
+					websitePassword = websitePassword + characters[dezimal];
 				}
-				document.getElementById("password").textContent = "Passwort: " + password;
+				document.getElementById("websitePassword").value = websitePassword;
 			}
 		</script>
 	</body>
