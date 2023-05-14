@@ -31,8 +31,8 @@
 				border-radius: 4px;
 			}
     	</style>
-		<script type="text/javascript" src="crypto-js/crypto-js.js"></script>
-</head>
+		<script src="crypto-js/crypto-js.js"></script>
+	</head>
 	<body> 
 		<h1>Passwort-Generator</h1>
 		<input type="text" id="masterPassword" placeholder="Masterpasswort">
@@ -55,7 +55,7 @@
 			Nein, es wird jedes mal das gleich Webseitenpasswort generiert, wenn die Kombination aus Deinem Masterpasswort und dem Webseitenname identisch sind. Du kannst aber an Passwörter, die du öfter ändern möchstest eine (Jahres-) Zahl anhängen, wie zum Beispiel <span class="code">PayPal22</span>, <span class="code">PayPal23</span>, <span class="code">PayPal...</span>, damit Du jedes Jahr ein neues Webseitenpassort verwenden kannst.</p>
 		</ul>
 		<p><a href="https://github.com/F1248">F1248</a>, 2023</p>
-		<script type="text/javascript">
+		<script>
 			const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-#";
 			function calculatePassword() {
 				let masterPassword = document.getElementById("masterPassword").value;
