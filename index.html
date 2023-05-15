@@ -88,15 +88,15 @@
 				let websiteName = document.getElementById("websiteName").value;
 				let string = masterPassword + websiteName;
 				let hash = CryptoJS.SHA256(string).toString();
-				let websitePassword = "" 
+				let websitePassword = "";
 				for (let character = 0; character < 16; character++) {
 					let hex1_index = character * 2;
 					let hex2_index = hex1_index + 1;
-					let hex1 = hash[hex1_index]
-					let hex2 = hash[hex2_index]
+					let hex1 = hash[hex1_index];
+					let hex2 = hash[hex2_index];
 					let hex = hex1 + hex2;
-					let binary_long = parseInt(hex, 16).toString(2)
-					let binary = binary_long.slice(0, 6)
+					let binary_long = parseInt(hex, 16).toString(2);
+					let binary = binary_long.slice(0, 6);
 					let dezimal = parseInt(binary, 2);
 					websitePassword = websitePassword + characters[dezimal];
 				}
