@@ -24,21 +24,21 @@
 				font-family: "SF-Rounded-Bold";
 				font-size: 24 px;
 			}
-			p, span, label, input {
+			p, label, input {
 				font-family: "SF-Rounded";
 				font-size: 16 px;
 				margin: 4px;
+			}
+			span {
+				font-family: "SF-Mono";
+				background-color: #BFBFBF;
+				padding: 2px;
+				border-radius: 4px;
 			}
 			#masterPassword, #websiteName, #websitePassword {
 				font-family: "SF-Mono";
 				border-radius: 4px;
 				width: 256px;
-			}
-			.code {
-				font-family: "SF-Mono";
-				background-color: #BFBFBF;
-				padding: 2px;
-				border-radius: 4px;
 			}
     	</style>
 		<script src="crypto-js/crypto-js.js"></script>
@@ -60,7 +60,7 @@
 		<p>
 			Diese Webseite berechnet aus einem Masterpasswort in Kombination mit einem Webseitennamen ein Webseitenpasswort.<br>
 			Immer wenn die Kobination aus Masterpasswort und Webseitennamen idetisch sind, wird das selbe Webseitenpasswort berechnet, anderenfalls ein komplett anderes.<br>
-			<b>Achtung!</b> Die Groß- und Kleinschreibung ist hier entscheidet, auch <span class="code">O</span> und <span class="code">0</span> sowie <span class="code">I</span> und <span class="code">l</span> dürfen nicht verwechselt werden!
+			<b>Achtung!</b> Die Groß- und Kleinschreibung ist hier entscheidet, auch <span>O</span> und <span>0</span> sowie <span>I</span> und <span>l</span> dürfen nicht verwechselt werden!
 		</p>
 		<h2>Wie funktioiert das?</h2>
 		<p>
@@ -77,7 +77,7 @@
 				Nein, Du kannst Dein Masterpasswort nicht änderen, ohne dass sich auch alle Deine Webseitenpasswörter ändern. Deshalb soltest Du alle paar Jahre ein neues Masterpasswort erstellen und dann alle Webseite auf ihr neu berechnetes Webseitenpasswort zu ändern.</p>
 			<p>
 				Kann ich mein Webseitenpasswort ändern?<br>
-				Nein, es wird jedes mal das gleiche Webseitenpasswort berechnet, wenn die Kombination aus Deinem Masterpasswort und dem Webseitenname identisch sind. Du kannst aber an Passwörter, die du oft ändern möchstest eine (Jahres-) Zahl anhängen, wie zum Beispiel <span class="code">PayPal22</span>, <span class="code">PayPal23</span>, <span class="code">PayPal...</span>, damit Du jedes Jahr ein neues Webseitenpassort verwenden kannst, das du dann auf der Webseite änden musst.</p>
+				Nein, es wird jedes mal das gleiche Webseitenpasswort berechnet, wenn die Kombination aus Deinem Masterpasswort und dem Webseitenname identisch sind. Du kannst aber an Passwörter, die du oft ändern möchstest eine (Jahres-) Zahl anhängen, wie zum Beispiel <span>PayPal22</span>, <span>PayPal23</span>, <span>PayPal...</span>, damit Du jedes Jahr ein neues Webseitenpassort verwenden kannst, das du dann auf der Webseite änden musst.</p>
 		</ul>
 		<p>2023, erstellt von <a href="https://github.com/F1248">F1248</a></p>
 		<p><a href="https://github.com/F1248/F1248.github.io">Quellcode auf Github</a></p>
