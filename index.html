@@ -6,16 +6,16 @@
 		<title>Passwort-Generator</title>
 		<style>
 			@font-face {
-  				font-family: "SF-Rounded";
-  				src: url("fonts/SF-Rounded.otf");
+				font-family: "SF-Rounded";
+				src: url("fonts/SF-Rounded.otf");
 			}
 			@font-face {
 				font-family: "SF-Rounded-Bold";
 				src: url("fonts/SF-Rounded-Bold.otf");
 			}
 			@font-face {
-  				font-family: "SF-Mono";
-  				src: url("fonts/SF-Mono.otf");
+				font-family: "SF-Mono";
+				src: url("fonts/SF-Mono.otf");
 			}
 			h1 {
 				font-family: "SF-Rounded-Bold";
@@ -84,11 +84,11 @@
 		<p><a href="https://github.com/F1248/F1248.github.io">Quellcode auf Github</a></p>
 		<script>
 			document.getElementById("showMasterPassword").addEventListener("change", function() {
-		  		if (document.getElementById("showMasterPassword").checked) {
+				if (document.getElementById("showMasterPassword").checked) {
 					document.getElementById("masterPassword").type = "text";
-		  		} else {
+				} else {
 					document.getElementById("masterPassword").type = "password";
-		  		}
+				}
 			});
 			function calculatePassword() {
 				const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-#";
@@ -98,7 +98,7 @@
 				let hash = CryptoJS.SHA256(string).toString();
 				let websitePassword = "" 
 				for (let character = 0; character < 16; character++) {
-  					let hex1_index = character * 2;
+					let hex1_index = character * 2;
 					let hex2_index = hex1_index + 1;
 					let hex1 = hash[hex1_index]
 					let hex2 = hash[hex2_index]
