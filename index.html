@@ -58,27 +58,19 @@
 		<label for="websitePassword">Webseitenpasswort:</label>
 		<input type="text" id="websitePassword" readonly>
 		<h2>Was ist das?</h2>
-		<p>
-			Diese Webseite berechnet aus einem Masterpasswort in Kombination mit einem Webseitennamen ein Webseitenpasswort.<br>
-			Immer wenn die Kobination aus Masterpasswort und Webseitennamen idetisch sind, wird das selbe Webseitenpasswort berechnet, anderenfalls ein komplett anderes.<br>
-			<b>Achtung!</b> Die Groß- und Kleinschreibung ist hier entscheidet, auch <span>O</span> und <span>0</span> sowie <span>I</span> und <span>l</span> dürfen nicht verwechselt werden!
-		</p>
-		<h2>Wie funktioiert das?</h2>
-		<p>
-			Diese Webseite nutzt eine kryptographische Hashfunktion names SHA-256, welche unter Anderem vom <a href="https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR02102/BSI-TR-02102.pdf?__blob=publicationFile">Bundesamt für Sicherheit in der Informationstechnik</a> und vom <a href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">National Institute of Standards and Technology</a> als kryptographisch stark eingestuft wird. Das bedeutet, dass diese Berechnung nach heutigem technoligischem Stand irreversibel ist. Aus einem Webseitenpasswort kann also weder das Masterpasswort noch der Webseitenname berechnet werden.<br>
-		</p>
+		<p>Diese Webseite berechnet aus einem Masterpasswort in Kombination mit einem Webseitennamen ein pseudozufälliges Webseitenpasswort. Aus jeder Kombination von Masterpasswort und Webseitenname wird jedes Mal das gleiche Webseitenpasswort berechnet.</p>
+		<h2>Ist das sicher? Wie funktioniert das?</h2>
+		<p>Diese Webseite verwendet die kryptografische Hashfunktion SHA-256, die unter anderem vom deutschen <a href="https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR02102/BSI-TR-02102.pdf?__blob=publicationFile">Bundesamt für Sicherheit in der Informationstechnik</a> sowie vom <a href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">National Institute of Standards and Technology</a> der Vereinigten Staaten als kryptografisch stark eingestuft wird. Das bedeutet, dass die Berechnung des Hashwerts nicht umkehrbar ist. Aus einem Webseitenpasswort kann daher weder das Masterpasswort noch der Webseitenname berechnet werden. Keine der hier eingegebenen Daten werden hochgeladen oder gespeichert. Das Webseitenpasswort wird jedes Mal neu aus dem Masterpasswort und dem Webseitenamen berechnet, die Berechnung erfolgt direkt auf dem Gerät. Der Quellcode kann <a href="https://github.com/F1248/F1248.github.io">auf Github</a> eingesehen werden. Für den Fall, dass diese Website nicht erreichbar sein sollte, gibt es eine identische <a href="offline.zip">Offline-Version</a>.</p>
+		<h2>Technische Dokumentation:</h2>
+		<p></p>
 		<h2>Fragen:</h2>
 		<ul>
 			<p>
-				Was passiert mit meinen Passwörtern?<br>
-				Deine Daten werden nirgends gespeichert, sondern jedes Mal aus Deinem Masterpasswort und dem Webseitennamen neu berechnet. Ist die Kobination identisch, entsteht das selbe Webseitenpasswort. Die komplette Berechenung findet auf Deinem Gerät statt.
-			</p>
+				Kann ich das Masterpasswort ändern?<br>
+				Nein, das Masterpasswort kann nicht geändert werden, ohne dass alle Webseitenpasswörter geändert werden. Stattdessen sollte alle paar Jahre ein neues Masterpasswort erstellt und alle Webseiten auf das neue Webseitenpasswort geändert werden.</p>
 			<p>
-				Kann ich mein Masterpasswort ändern?<br>
-				Nein, Du kannst Dein Masterpasswort nicht änderen, ohne dass sich auch alle Deine Webseitenpasswörter ändern. Deshalb soltest Du alle paar Jahre ein neues Masterpasswort erstellen und dann alle Webseite auf ihr neu berechnetes Webseitenpasswort zu ändern.</p>
-			<p>
-				Kann ich mein Webseitenpasswort ändern?<br>
-				Nein, es wird jedes mal das gleiche Webseitenpasswort berechnet, wenn die Kombination aus Deinem Masterpasswort und dem Webseitenname identisch sind. Du kannst aber an Passwörter, die du oft ändern möchstest eine (Jahres-) Zahl anhängen, wie zum Beispiel <span>PayPal22</span>, <span>PayPal23</span>, <span>PayPal...</span>, damit Du jedes Jahr ein neues Webseitenpassort verwenden kannst, das du dann auf der Webseite änden musst.</p>
+				Kann ich ein Webseitenpasswort ändern?<br>
+				Nein, immer wenn die Kombination aus Masterpasswort und Webseitenname identisch ist, wird auch das gleiche Webseitenpasswort berechnet. Bei besonders wichtigen Passwörtern kann eine (Jahres-) Zahl angehängt werden, zum Beispiel <span>Bank22</span>, <span>Bank23</span>, <span>Bank...</span>, um jedes Jahr ein neues Webseitenpasswort verwenden zu können, das dann auf der Webseite geändert werden muss.
 		</ul>
 		<p>2023, erstellt von <a href="https://github.com/F1248">F1248</a></p>
 		<p><a href="https://github.com/F1248/F1248.github.io">Quellcode auf Github</a></p>
