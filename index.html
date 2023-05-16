@@ -25,7 +25,7 @@
 				font-family: "SF-Rounded-Bold";
 				font-size: 24 px;
 			}
-			p, label, input {
+			p, label, input, li {
 				font-family: "SF-Rounded";
 				font-size: 16 px;
 				margin: 4px;
@@ -58,20 +58,72 @@
 		<label for="websitePassword">Webseitenpasswort:</label>
 		<input type="text" id="websitePassword" readonly>
 		<h2>Was ist das?</h2>
-		<p>Diese Webseite berechnet aus einem Masterpasswort in Kombination mit einem Webseitennamen ein pseudozufälliges Webseitenpasswort. Aus jeder Kombination von Masterpasswort und Webseitenname wird jedes Mal das gleiche Webseitenpasswort berechnet.</p>
+		<p>Diese Webseite berechnet aus einem Masterpasswort in Kombination mit einem Webseitennamen ein pseudozufälliges Webseitenpasswort, bestehend aus Groß- und Kleinbuchstaben, Ziffern sowie <span>-</span> und <span>#</span>. Aus jeder Kombination von Masterpasswort und Webseitenname wird jedes Mal das gleiche Webseitenpasswort berechnet.</p>
 		<h2>Ist das sicher? Wie funktioniert das?</h2>
-		<p>Diese Webseite verwendet die kryptografische Hashfunktion SHA-256, die unter anderem vom deutschen <a href="https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR02102/BSI-TR-02102.pdf?__blob=publicationFile">Bundesamt für Sicherheit in der Informationstechnik</a> sowie vom <a href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">National Institute of Standards and Technology</a> der Vereinigten Staaten als kryptografisch stark eingestuft wird. Das bedeutet, dass die Berechnung des Hashwerts nicht umkehrbar ist. Aus einem Webseitenpasswort kann daher weder das Masterpasswort noch der Webseitenname berechnet werden. Keine der hier eingegebenen Daten werden hochgeladen oder gespeichert. Das Webseitenpasswort wird jedes Mal neu aus dem Masterpasswort und dem Webseitenamen berechnet, die Berechnung erfolgt direkt auf dem Gerät. Der Quellcode kann <a href="https://github.com/F1248/F1248.github.io">auf Github</a> eingesehen werden. Für den Fall, dass diese Website nicht erreichbar sein sollte, gibt es eine identische <a href="offline.zip">Offline-Version</a>.</p>
-		<h2>Technische Dokumentation:</h2>
-		<p></p>
+		<p>Diese Webseite verwendet die kryptografische Hashfunktion SHA-256, die unter anderem vom deutschen <a href="https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR02102/BSI-TR-02102.pdf?__blob=publicationFile">Bundesamt für Sicherheit in der Informationstechnik</a> sowie vom <a href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">National Institute of Standards and Technology</a> der Vereinigten Staaten als kryptografisch stark eingestuft wird. Das bedeutet, dass die Berechnung des Hashwerts nicht umkehrbar ist. Aus einem Webseitenpasswort kann daher weder das Masterpasswort noch der Webseitenname berechnet werden. Keine der hier eingegebenen Daten werden hochgeladen oder gespeichert. Das Webseitenpasswort wird jedes Mal neu aus dem Masterpasswort und dem Webseitennamen berechnet, die Berechnung erfolgt direkt auf dem Gerät. Der Quellcode kann <a href="https://github.com/F1248/F1248.github.io">auf Github</a> eingesehen werden. Für den Fall, dass diese Website nicht erreichbar sein sollte, gibt es eine identische <a href="offline.zip">Offline-Version</a>.</p>
 		<h2>Fragen:</h2>
 		<ul>
-			<p>
+			<li>
 				Kann ich das Masterpasswort ändern?<br>
 				Nein, das Masterpasswort kann nicht geändert werden, ohne dass alle Webseitenpasswörter geändert werden. Stattdessen sollte alle paar Jahre ein neues Masterpasswort erstellt und alle Webseiten auf das neue Webseitenpasswort geändert werden.</p>
-			<p>
+			</li>
+			<li>
 				Kann ich ein Webseitenpasswort ändern?<br>
 				Nein, immer wenn die Kombination aus Masterpasswort und Webseitenname identisch ist, wird auch das gleiche Webseitenpasswort berechnet. Bei besonders wichtigen Passwörtern kann eine (Jahres-) Zahl angehängt werden, zum Beispiel <span>Bank22</span>, <span>Bank23</span>, <span>Bank...</span>, um jedes Jahr ein neues Webseitenpasswort verwenden zu können, das dann auf der Webseite geändert werden muss.
+			</li>
 		</ul>
+		<h2>Technische Dokumentation:</h2>
+		<p>Das Webseitenpasswort wird wie folgt berechnet:</p>
+		<ol>
+			<li>
+				Das Masterpasswort und der Webseitenname werden zusammengesetzt.<br>
+				<span>Passwort</span> + <span>Webseitenname</span> → <span>PasswortWebseitenname</span>
+			</li>
+			<li>
+				Daraus wird mit der <a href="https://github.com/brix/crypto-js">crypto-js-Bibliotetk</a> der SHA-256-Hashwert berechnet.<br>
+				<span>PasswortWebseitenname</span> → <span>1D66DD438AB5E6E91924CEC7C3D8A4E2DBB4D478DB252806691F6E04C2B1F370</span>
+			</li>
+			<li>
+				Die ersten 16 Zweiergruppen des Hashwerts werden jeweils in eine Binärzahl umgerechnet.
+				<ol>
+					<li><span>1D</span> → <span>00011101</span></li>
+					<li><span>66</span> → <span>01100110</span></li>
+					<li><span>DD</span> → <span>11011101</span></li>
+					<li><span>43</span> → <span>01000011</span></li>
+					<li><span>……</span> → <span>……………………</span></li>
+				</ol>
+			</li>
+			<li>
+				Die Binärzahl wird auf die letzten sechs Stellen gekürzt.
+				<ol>
+					<li><span>00011101</span> → <span>011101</span></li>
+					<li><span>01100110</span> → <span>100110</span></li>
+					<li><span>11011101</span> → <span>011101</span></li>
+					<li><span>01000011</span> → <span>000011</span></li>
+					<li><span>……………………</span> → <span>………………</span></li>
+				</ol>
+			</li>
+			<li>
+				Die Binärzahl wird in eine Dezimalzahl umgerechnet.
+				<ol>
+					<li><span>011101</span> → <span>29</span></li>
+					<li><span>100110</span> → <span>46</span></li>
+					<li><span>011101</span> → <span>29</span></li>
+					<li><span>000011</span> → <span>03</span></li>
+					<li><span>………………</span> → <span>……</span></li>
+				</ol>
+			</li>
+			<li>
+				Das Zeichen an der entsprechenden Stelle dieses Strings <span>ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-#</span> wird an das Passwort angehängt.
+				<ol>
+					<li><span>29</span> → <span>d</span></li>
+					<li><span>46</span> → <span>m</span></li>
+					<li><span>29</span> → <span>d</span></li>
+					<li><span>03</span> → <span>D</span></li>
+					<li><span>……</span> → <span>…</span></li>
+				</ol>
+			</li>
+		</ol>
 		<p>2023, erstellt von <a href="https://github.com/F1248">F1248</a></p>
 		<p><a href="https://github.com/F1248/F1248.github.io">Quellcode auf Github</a></p>
 		<script>
