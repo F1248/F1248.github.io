@@ -76,15 +76,15 @@
 		<p>Das Webseitenpasswort wird wie folgt berechnet:</p>
 		<ol>
 			<li>
-				Das Masterpasswort und der Webseitenname werden zusammengesetzt.<br>
+				Masterpasswort und Webseitenname werden zu einer Zeichenfolge zusammengesetzt.<br>
 				<span>Passwort</span> + <span>Webseitenname</span> → <span>PasswortWebseitenname</span>
 			</li>
 			<li>
-				Daraus wird mit der <a href="https://github.com/brix/crypto-js">crypto-js-Bibliotetk</a> der SHA-256-Hashwert berechnet.<br>
+				Mit der <a href="https://github.com/brix/crypto-js">crypto-js-Bibliotetk</a> wird der SHA-256-Hashwert der Zeichenfolge berechnet.<br>
 				<span>PasswortWebseitenname</span> → <span>1D66DD438AB5E6E91924CEC7C3D8A4E2DBB4D478DB252806691F6E04C2B1F370</span>
 			</li>
 			<li>
-				Die ersten 16 Zweiergruppen des Hashwerts werden jeweils in eine Binärzahl umgerechnet.
+				Die ersten 32 Ziffern des Hashwerts werden paarweise in 16 Binärzahlen umgewandelt
 				<ol>
 					<li><span>1D</span> → <span>00011101</span></li>
 					<li><span>66</span> → <span>01100110</span></li>
@@ -94,7 +94,7 @@
 				</ol>
 			</li>
 			<li>
-				Die Binärzahl wird auf die letzten sechs Stellen gekürzt.
+				Die Binärzahlen werden auf die letzten sechs Stellen gekürzt.
 				<ol>
 					<li><span>00011101</span> → <span>011101</span></li>
 					<li><span>01100110</span> → <span>100110</span></li>
@@ -104,7 +104,7 @@
 				</ol>
 			</li>
 			<li>
-				Die Binärzahl wird in eine Dezimalzahl umgerechnet.
+				Die Binärzahlen werden in Dezimalzahlen umgewandelt.
 				<ol>
 					<li><span>011101</span> → <span>29</span></li>
 					<li><span>100110</span> → <span>46</span></li>
@@ -114,7 +114,7 @@
 				</ol>
 			</li>
 			<li>
-				Das Zeichen an der entsprechenden Stelle dieses Strings <span>ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-#</span> wird an das Passwort angehängt.
+				Das Webseitenpasswort setzt sich dann aus den Zeichen an den Stellen in der Zeichenfolge <span>ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-#</span> zusammen, die den Dezimalzahlen entsprechen. Die Zählung geht von <span>0</span> bis <span>63</span>.
 				<ol>
 					<li><span>29</span> → <span>d</span></li>
 					<li><span>46</span> → <span>m</span></li>
