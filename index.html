@@ -58,9 +58,9 @@
 		<label for="websitePassword">Webseitenpasswort:</label>
 		<input type="text" id="websitePassword" readonly>
 		<h2>Was ist das?</h2>
-		<p>Diese Webseite berechnet aus einem Masterpasswort in Kombination mit einem Webseitennamen ein pseudozufälliges Webseitenpasswort, bestehend aus Groß- und Kleinbuchstaben, Ziffern sowie <span>-</span> und <span>#</span>. Aus jeder Kombination von Masterpasswort und Webseitenname wird jedes Mal das gleiche Webseitenpasswort berechnet.</p>
+		<p>Der Passwort-Generator berechnet aus einem Masterpasswort in Kombination mit einem Webseitennamen ein pseudozufälliges Webseitenpasswort. Pseudozufällig bedeutet in diesem Zusammenhang, dass das Webseitenpasswort zwar zufällig erscheint, aber aus jeder Kombination von Masterpasswort und Webseitenname jedes Mal das gleiche Webseitenpasswort berechnet wird. Das Webseitenpasswort besteht aus Groß- und Kleinbuchstaben, Ziffern sowie <span>-</span> und <span>#</span>.</p>
 		<h2>Ist das sicher? Wie funktioniert das?</h2>
-		<p>Diese Webseite verwendet die kryptografische Hashfunktion SHA-256, die unter anderem vom deutschen <a href="https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR02102/BSI-TR-02102.pdf?__blob=publicationFile">Bundesamt für Sicherheit in der Informationstechnik</a> sowie vom <a href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">National Institute of Standards and Technology</a> der Vereinigten Staaten als kryptografisch stark eingestuft wird. Das bedeutet, dass die Berechnung des Hashwerts nicht umkehrbar ist. Aus einem Webseitenpasswort kann daher weder das Masterpasswort noch der Webseitenname berechnet werden. Keine der hier eingegebenen Daten werden hochgeladen oder gespeichert. Das Webseitenpasswort wird jedes Mal neu aus dem Masterpasswort und dem Webseitennamen berechnet, die Berechnung erfolgt direkt auf dem Gerät. Der Quellcode kann <a href="https://github.com/F1248/F1248.github.io">auf Github</a> eingesehen werden. Für den Fall, dass diese Website nicht erreichbar sein sollte, gibt es eine identische <a href="offline.zip">Offline-Version</a>.</p>
+		<p>Der Passwort-Generator verwendet die kryptografische Hashfunktion SHA-256, die unter anderem vom deutschen <a href="https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR02102/BSI-TR-02102.pdf?__blob=publicationFile">Bundesamt für Sicherheit in der Informationstechnik</a> sowie vom <a href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">National Institute of Standards and Technology</a> der Vereinigten Staaten als kryptografisch stark eingestuft wird. Das bedeutet, dass die Berechnung eines Webseitenpassworts nicht umkehrbar ist. Aus einem Webseitenpasswort kann daher weder das Masterpasswort noch der Webseitenname berechnet werden. Keine der hier eingegebenen Daten werden hochgeladen oder gespeichert. Das Webseitenpasswort wird jedes Mal neu aus dem Masterpasswort und dem Webseitennamen berechnet, die Berechnung erfolgt direkt auf dem Gerät. Der Quellcode kann <a href="https://github.com/F1248/F1248.github.io">auf Github</a> eingesehen werden. Für den Fall, dass diese Webseite nicht erreichbar sein sollte, gibt es eine identische <a href="offline.zip">Offline-Version</a>.</p>
 		<h2>Fragen:</h2>
 		<ul>
 			<li>
@@ -80,7 +80,7 @@
 				<span>Passwort</span> + <span>Webseitenname</span> → <span>PasswortWebseitenname</span>
 			</li>
 			<li>
-				Mit der <a href="https://github.com/brix/crypto-js">crypto-js-Bibliotetk</a> wird der SHA-256-Hashwert der Zeichenfolge berechnet.<br>
+				Mit der <a href="https://github.com/brix/crypto-js">crypto-js-Bibliotetk</a> wird der <a href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">SHA-256-Hashwert</a> der Zeichenfolge berechnet.<br>
 				<span>PasswortWebseitenname</span> → <span>1D66DD438AB5E6E91924CEC7C3D8A4E2DBB4D478DB252806691F6E04C2B1F370</span>
 			</li>
 			<li>
@@ -125,6 +125,7 @@
 			</li>
 		</ol>
 		<p>2023, erstellt von <a href="https://github.com/F1248">F1248</a></p>
+		<p><a href="offline.zip">Quellcode herunterladen (Offline-Version)</a></p>
 		<p><a href="https://github.com/F1248/F1248.github.io">Quellcode auf Github</a></p>
 		<script>
 			document.getElementById("showMasterPassword").addEventListener("change", function() {
