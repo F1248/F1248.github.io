@@ -1,0 +1,44 @@
+@font-face {
+    font-family: "SF-Rounded";
+    src: url("fonts/SF-Rounded.otf");
+}
+@font-face {
+    font-family: "SF-Rounded-Bold";
+    src: url("fonts/SF-Rounded-Bold.otf");
+}
+@font-face {
+    font-family: "SF-Mono";
+    src: url("fonts/SF-Mono.otf");
+}
+h1 {
+    font-family: "SF-Rounded-Bold";
+    font-size: 32 px;
+    margin: 16px;
+}
+h2 {
+    font-family: "SF-Rounded-Bold";
+    font-size: 24 px;
+    margin: 12px;
+}
+p, label, input, li {
+    font-family: "SF-Rounded";
+    font-size: 16 px;
+    margin: 8px;
+}
+.code {
+    font-family: "SF-Mono";
+    background-color: #BFBFBF;
+    padding: 1px;
+    border-radius: 4px;
+}
+#masterPassword, #websiteName, #websitePassword {
+    font-family: "SF-Mono";
+    border-radius: 4px;
+    width: 256px;
+}
+.longWord {
+    word-wrap: break-word;
+}
+.no-wrap {
+    white-space: nowrap;
+}
