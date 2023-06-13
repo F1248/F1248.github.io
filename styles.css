@@ -20,7 +20,7 @@ h2 {
     font-size: 24 px;
     margin: 12px;
 }
-p, label, input, li {
+p, label, input, li, button {
     font-family: "SF-Rounded";
     font-size: 16 px;
     margin: 8px;
