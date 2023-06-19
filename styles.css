@@ -1,38 +1,38 @@
 @font-face {
-    font-family: "SF-Rounded";
-    src: url("fonts/SF-Rounded.otf");
+    font-family: "Regular";
+    src: url("fonts/Regular.otf");
 }
 @font-face {
-    font-family: "SF-Rounded-Bold";
-    src: url("fonts/SF-Rounded-Bold.otf");
+    font-family: "old";
+    src: url("fonts/Bold.otf");
 }
 @font-face {
-    font-family: "SF-Mono";
-    src: url("fonts/SF-Mono.otf");
+    font-family: "Mono";
+    src: url("fonts/Mono.otf");
 }
 h1 {
-    font-family: "SF-Rounded-Bold";
+    font-family: "Bold";
     font-size: 32 px;
     margin: 16px;
 }
 h2 {
-    font-family: "SF-Rounded-Bold";
+    font-family: "Bold";
     font-size: 24 px;
     margin: 12px;
 }
 p, label, input, li, button {
-    font-family: "SF-Rounded";
+    font-family: "Regular";
     font-size: 16 px;
     margin: 8px;
 }
 .code {
-    font-family: "SF-Mono";
+    font-family: "Mono";
     background-color: #BFBFBF;
     padding: 1px;
     border-radius: 4px;
 }
 #masterPassword, #websiteName, #websitePassword {
-    font-family: "SF-Mono";
+    font-family: "Mono";
     border-radius: 4px;
     width: 256px;
 }
