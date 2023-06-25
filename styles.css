@@ -1,44 +1,52 @@
 @font-face {
-    font-family: "Regular";
+    font-family: Regular;
     src: url("fonts/Regular.otf");
 }
 @font-face {
-    font-family: "Bold";
+    font-family: Bold;
     src: url("fonts/Bold.otf");
 }
 @font-face {
     font-family: "Mono";
     src: url("fonts/Mono.otf");
 }
-h1 {
-    font-family: "Bold";
+h1, h2, h3 {
+    font-family: Bold;
+}
+h1 a {
     font-size: 32 px;
     margin: 16px;
+    color: inherit;
+    text-decoration: none;
 }
 h2 {
-    font-family: "Bold";
     font-size: 24 px;
     margin: 12px;
 }
-p, label, input, li, button {
-    font-family: "Regular";
+h3 {
     font-size: 16 px;
     margin: 8px;
 }
-.code {
-    font-family: "Mono";
+p, label, input, li, button {
+    line-height: 1.5;
+    font-family: Regular;
+    font-size: 16 px;
+    margin: 8px;
+}
+#masterPassword, #websiteName, #websitePassword {
+    font-family: Mono;
+    border-radius: 4px;
+    width: 256px;
+}
+.mono {
+    font-family: Mono;
     background-color: #BFBFBF;
     padding: 1px;
     border-radius: 4px;
 }
-#masterPassword, #websiteName, #websitePassword {
-    font-family: "Mono";
-    border-radius: 4px;
-    width: 256px;
-}
-.longWord {
-    word-wrap: break-word;
-}
-.no-wrap {
+.contiguous {
     white-space: nowrap;
+}
+.longString {
+    word-wrap: break-word;
 }
