@@ -14,10 +14,10 @@ function calculatePassword() {
     let hash = CryptoJS.SHA256(string).toString();
     let websitePassword = "";
     if (document.getElementById("generateNumber").checked) {
-        let dezimal = BigInt("0x" + hash).toString();
-        let dezimalLength = dezimal.length;
-        dezimal = dezimal.slice(dezimalLength - 16, dezimalLength);
-        websitePassword = dezimal;
+        let decimal = BigInt("0x" + hash).toString();
+        let decimalLength = decimal.length;
+        decimal = decimal.slice(decimalLength - 16, decimalLength);
+        websitePassword = decimal;
     } else {
         const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         for (let characterIndex = 0; characterIndex < 16; characterIndex++) {
@@ -31,9 +31,9 @@ function calculatePassword() {
             if (binaryLength > 6) {
                 binary = binary.slice(binaryLength - 6, binaryLength);
             }
-            let dezimal = parseInt(binary, 2);
-            if (dezimal < 62) {
-                let character = characters[dezimal];
+            let decimal = parseInt(binary, 2);
+            if (decimal < 62) {
+                let character = characters[decimal];
                 websitePassword = websitePassword + character;
             }
         }
