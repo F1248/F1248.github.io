@@ -33,6 +33,9 @@ p, label, input, li, button {
     font-size: 16 px;
     margin: 8px;
 }
+#websiteName {
+    text-transform: uppercase;
+}
 #masterPassword, #websiteName, #websitePassword {
     font-family: Mono;
     border-radius: 4px;

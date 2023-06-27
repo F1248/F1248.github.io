@@ -9,7 +9,7 @@ document.getElementById("showMasterPassword").addEventListener(
 )
 function calculatePassword() {
     let masterPassword = document.getElementById("masterPassword").value;
-    let websiteName = document.getElementById("websiteName").value;
+    let websiteName = document.getElementById("websiteName").value.toUpperCase();
     let string = masterPassword + websiteName;
     let hash = CryptoJS.SHA256(string).toString();
     let websitePassword = "";
@@ -21,6 +21,7 @@ function calculatePassword() {
     } else {
         const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         for (let characterIndex = 0; characterIndex < 16; characterIndex++) {
+            console.log("")
             let hex1Index = characterIndex * 2;
             let hex2Index = hex1Index + 1;
             let hex1 = hash[hex1Index];
@@ -32,8 +33,10 @@ function calculatePassword() {
                 binary = binary.slice(binaryLength - 6, binaryLength);
             }
             let decimal = parseInt(binary, 2);
+            console.log(decimal)
             if (decimal < 62) {
                 let character = characters[decimal];
+                console.log(character)
                 websitePassword = websitePassword + character;
             }
         }

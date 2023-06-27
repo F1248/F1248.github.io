@@ -40,7 +40,7 @@
 			</li>
 			<li>
 				<h3 id="changeWebsitePassword">Kann ein Webseitenpasswort geändert werden?</h3>
-				Ja, ein Webseitenpasswort kann geändert werden, indem der Webseitenname geändert wird. Bei besonders kritischen Passwörtern kann eine (Jahres-) Zahl angehängt werden, zum Beispiel <span class="mono">Bank22</span>, <span class="mono">Bank23</span>, <span class="mono">Bank…</span>, damit jedes Jahr ein neues Webseitenpasswort berechnet wird, das auf der Webseite geändert werden muss.
+				Ja, ein Webseitenpasswort kann geändert werden, indem der Webseitenname geändert wird. Bei besonders kritischen Passwörtern kann eine (Jahres-) Zahl angehängt werden, zum Beispiel <span class="mono">BANK22</span>, <span class="mono">BANK23</span>, <span class="mono">BANK…</span>, damit jedes Jahr ein neues Webseitenpasswort berechnet wird, das auf der Webseite geändert werden muss.
 			</li>
 			<li>
 				<h3>Was passiert, wenn das Masterpasswort gestohlen wird?</h3>
@@ -60,22 +60,25 @@
 		<ul>
 			<li>
 				Masterpasswort und Webseitenname werden zu einer Zeichenfolge zusammengesetzt.<br>
-				<span class="mono">Passwort</span> + <span class="mono">Webseitenname</span> → <span class="mono">PasswortWebseitenname</span>
+				<span class="mono">Passwort</span> + <span class="mono">WEBSEITENNAME</span> → <span class="mono">PasswortWEBSEITENNAME</span>
 			</li>
 			<li>
 				Mit der <a href="https://github.com/brix/crypto-js">crypto-js-Bibliotetk</a> wird der <a href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">SHA-256-Hashwert</a> der Zeichenfolge berechnet.<br>
-				<span class="mono">PasswortWebseitenname</span> → <span class="mono longString">1D66DD438AB5E6E91924CEC7C3D8A4E2DBB4D478DB252806691F6E04C2B1F370</span>
+				<span class="mono">PasswortWEBSEITENNAME</span> → <span class="mono longString">927E609B5C0184FCBA3B28D1F85C8F6DC03A798BE5347E8FD0604AD8D06B67BD</span>
 			</li>
 		</ul>
 		<h3>Eine Webseiten-PIN wird wie folgt berechnet:</h3>
 				<ul>
 					<li>
 						Der Hashwert wird in eine Dezimalzahl umgewandelt
-						<span class="mono longString">1D66DD438AB5E6E91924CEC7C3D8A4E2DBB4D478DB252806691F6E04C2B1F370</span> → <span class="mono longString">13298818116389114268544870261927532033440203594122160989539336721401203782512</span>
+						<span class="mono longString">927E609B5C0184FCBA3B28D1F85C8F6DC03A798BE5347E8FD0604AD8D06B67BD</span> → <span class="mono longString">66260965379449350342370028844262299130226921730473109196283496164473034205117</span>
 					</li>
 					<li>
 						Die Webseiten-PIN besteht aus den letzten 16 Ziffern der Dezimalzahl.
-						<span class="mono longString">13298818116389114268544870261927532033440203594122160989539336721401203782512</span> → <span class="mono">6721401203782512</span>
+						<span class="mono longString">66260965379449350342370028844262299130226921730473109196283496164473034205117</span> → <span class="mono">6164473034205117</span>
+					</li>
+					<li>
+						Die Webseiten-PIN lautet <span class="mono">6164473034205117</span>.
 					</li>
 				</ul>
 		<h3>Ein Webseitenpasswort wird wie folgt berechnet:</h3>
@@ -83,42 +86,45 @@
 			<li>
 				Die ersten 32 Ziffern des Hashwerts werden paarweise in 16 Binärzahlen umgewandelt.
 				<ul>
-					<li><span class="mono">1D</span> → <span class="mono">00011101</span></li>
-					<li><span class="mono">66</span> → <span class="mono">01100110</span></li>
-					<li><span class="mono">DD</span> → <span class="mono">11011101</span></li>
-					<li><span class="mono">43</span> → <span class="mono">01000011</span></li>
+					<li><span class="mono">92</span> → <span class="mono">10010010</span></li>
+					<li><span class="mono">7E</span> → <span class="mono">&nbsp;1111110</span></li>
+					<li><span class="mono">60</span> → <span class="mono">&nbsp;1100000</span></li>
+					<li><span class="mono">9B</span> → <span class="mono">10011011</span></li>
 					<li><span class="mono">……</span> → <span class="mono">……………………</span></li>
 				</ul>
 			</li>
 			<li>
 				Die Binärzahlen werden auf die letzten sechs Stellen gekürzt.
 				<ul>
-					<li><span class="mono">00011101</span> → <span class="mono">011101</span></li>
-					<li><span class="mono">01100110</span> → <span class="mono">100110</span></li>
-					<li><span class="mono">11011101</span> → <span class="mono">011101</span></li>
-					<li><span class="mono">01000011</span> → <span class="mono">000011</span></li>
+					<li><span class="mono">10010010</span> → <span class="mono">010010</span></li>
+					<li><span class="mono">&nbsp;1111110</span> → <span class="mono">111110</span></li>
+					<li><span class="mono">&nbsp;1100000</span> → <span class="mono">100000</span></li>
+					<li><span class="mono">10011011</span> → <span class="mono">011011</span></li>
 					<li><span class="mono">……………………</span> → <span class="mono">………………</span></li>
 				</ul>
 			</li>
 			<li>
 				Die Binärzahlen werden in Dezimalzahlen von 0 bis 63 umgewandelt.
 				<ul>
-					<li><span class="mono">011101</span> → <span class="mono">29</span></li>
-					<li><span class="mono">100110</span> → <span class="mono">46</span></li>
-					<li><span class="mono">011101</span> → <span class="mono">29</span></li>
-					<li><span class="mono">000011</span> → <span class="mono">03</span></li>
+					<li><span class="mono">010010</span> → <span class="mono">18</span></li>
+					<li><span class="mono">111110</span> → <span class="mono">62</span></li>
+					<li><span class="mono">100000</span> → <span class="mono">32</span></li>
+					<li><span class="mono">011011</span> → <span class="mono">27</span></li>
 					<li><span class="mono">………………</span> → <span class="mono">……</span></li>
 				</ul>
 			</li>
 			<li>
 				Wenn die Dezimalzahl im Bereich von 0 bis 61 liegt, wird das Zeichen an der entsprechenden Stelle in der Zeichenfolge <span class="mono longString">ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789</span> dem Webseitenpasswort hinzugefügt.
 				<ul>
-					<li><span class="mono">29</span> → <span class="mono">d</span></li>
-					<li><span class="mono">46</span> → <span class="mono">m</span></li>
-					<li><span class="mono">29</span> → <span class="mono">d</span></li>
-					<li><span class="mono">03</span> → <span class="mono">D</span></li>
+					<li><span class="mono">18</span> → <span class="mono">S</span></li>
+					<li><span class="mono">62</span> → <span class="mono">&nbsp;</span></li>
+					<li><span class="mono">32</span> → <span class="mono">g</span></li>
+					<li><span class="mono">27</span> → <span class="mono">b</span></li>
 					<li><span class="mono">……</span> → <span class="mono">…</span></li>
 				</ul>
+			</li>
+			<li>
+				Das Webseitenpasswort lautet <span class="mono">SgbcBE867oR4cPt</span>.
 			</li>
 		</ul>
 		<br>
