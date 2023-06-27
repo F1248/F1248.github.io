@@ -15,11 +15,8 @@ function calculatePassword() {
     let websitePassword = "";
     if (document.getElementById("generateNumber").checked) {
         let dezimal = BigInt("0x" + hash).toString();
-        console.log(hash)
-        console.log(dezimal)
         let dezimalLength = dezimal.length;
         dezimal = dezimal.slice(dezimalLength - 16, dezimalLength);
-        console.log(dezimal)
         websitePassword = dezimal;
     } else {
         const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
