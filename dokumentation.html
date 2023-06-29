@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="styles.css">
+		<script src="crypto-js.js"></script>
+		<meta name="viewport" content="width=device-width">
+		<meta name="format-detection" content="telephone=no">
+		<meta charset="UTF-8">
+		<title>F1248's Passwort-Generator</title>
+	</head>
+	<body>
+		<h1><a href="https://f1248.github.io">F1248's Passwort-Generator</a></h1>
+		<label for="masterPassword">Masterpasswort:</label>
+		<input type="password" id="masterPassword">
+		<span class="contiguous">
+			<label for="showMasterPassword">Masterpasswort anzeigen</label>
+			<input type="checkbox" id="showMasterPassword">
+		</span>
+		<br>
+		<label for="websiteName">Webseitenname:</label>
+		<input type="text" id="websiteName" oninput="checkInput(this)">
+		<br>
+		<button onclick="calculatePassword()">Passwort berechnen</button>
+		<span class="contiguous">
+			<label for="generateNumber">PIN statt Passwort berechnen</label>
+			<input type="checkbox" id="generateNumber">
+		</span>
+		<br>
+		<label for="websitePassword">Webseitenpasswort:</label>
+		<input type="text" id="websitePassword" readonly>
+		<h2>Was ist das?</h2>
+		Diese Webseite berechnet aus einem Masterpasswort in Kombination mit einem Webseitennamen ein pseudozufälliges Webseitenpasswort oder eine pseudozufällige Webseiten-PIN. Pseudozufällig bedeutet, dass Passwort und PIN zwar zufällig erscheinen, jedoch aus jeder Kombination von Masterpasswort und Webseitenname immer das gleiche Webseitenpasswort und die gleiche PIN berechnet wird.
+		<h2>Erklärung</h2>
+		<ul>
+			<li>
+				<h3>Masterpasswort</h3>
+				Das Masterpasswort muss selbst gewählt werden. Die Sicherheit aller Webseitenpasswörter hängt von der Sicherheit des Masterpassworts ab. Ohne das Masterpasswort ist es unmöglich, an die Webseitenpasswörter zu kommen.
+			</li>
+			<li>
+				<h3>Webseitenname</h3>
+				Der Websetienname sollt möglichst einfache sein, zum Beispiel <span class="mono"></span>. Um unklarheit zu vermeiden kann er nur aus Großbuchstaben und Zahl 
+			</li>
+			<li>
+				<h3>Webseitenpasswort</h3>
+				Das Webseitenpasswort fängt immer mit <span class="mono">aA0#</span> an, damit es den Anforderungen fast aller Webseiten entspricht (mindestens jeweil ein Klein- und Großbuchstabe, eine Zahl und ein Sonderzeichen) und mit dieser Webseite generierte Passwörter wiedererkenn bar sind.
+			</li>
+		</ul>
+		<h3></h3>
+		<h2>Ist das sicher? Wie funktioniert das?</h2>
+		Der Passwort-Generator verwendet die kryptografische Hashfunktion SHA-256, die unter anderem vom deutschen <a href="https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR02102/BSI-TR-02102.pdf?__blob=publicationFile">Bundesamt für Sicherheit in der Informationstechnik</a> sowie vom <a href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">National Institute of Standards and Technology</a> der Vereinigten Staaten als kryptografisch stark eingestuft wird. Das bedeutet, dass die Berechnung eines Webseitenpassworts nicht umkehrbar ist. Aus einem Webseitenpasswort kann daher weder das Masterpasswort noch der Webseitenname berechnet werden. Keine der hier eingegebenen Daten werden hochgeladen oder gespeichert. Das Webseitenpasswort wird jedes Mal neu aus dem Masterpasswort und dem Webseitennamen berechnet, die Berechnung erfolgt direkt auf dem Gerät. Der Quellcode kann <a href="https://github.com/F1248/F1248.github.io">auf Github</a> eingesehen werden. Für den Fall, dass diese Webseite nicht erreichbar sein sollte, gibt es eine identische <a href="offline.zip">Offline-Version</a>.
+		<h2>Fragen:</h2>
+		<ul>
+			<li>
+				<h3 id="changeMasterPassword">Kann das Masterpasswort geändert werden?</h3>
+				Nein, das Masterpasswort kann nicht geändert werden, ohne dass für jeden Webseitennamen ein anderes Webseitenpasswort berechnet wird. Alle paar Jahre sollte ein neues Masterpasswort erstellt und alle neuen Webseitenpasswörter auf den Webseiten geändert werden.
+			</li>
+			<li>
+				<h3 id="changeWebsitePassword">Kann ein Webseitenpasswort geändert werden?</h3>
+				Ja, ein Webseitenpasswort kann geändert werden, indem der Webseitenname geändert wird. Bei besonders kritischen Passwörtern kann eine (Jahres-) Zahl angehängt werden, zum Beispiel <span class="mono">BANK22</span>, <span class="mono">BANK23</span>, <span class="mono">BANK…</span>, damit jedes Jahr ein neues Webseitenpasswort berechnet wird, das auf der Webseite geändert werden muss.
+			</li>
+			<li>
+				<h3>Was passiert, wenn das Masterpasswort gestohlen wird?</h3>
+				Wenn das Masterpasswort gestohlen wird, können in Kombination mit den Webseitennamen alle Webseitenpasswörter berechnet werden. In diesem Fall muss schnellstmöglich ein neues Masterpasswort erstellt und alle neuen Webseitenpasswörter auf den Webseiten geändert werden. Da es jedoch unmöglich ist, das Masterpasswort außer während der Eingabe auf dieser Webseite zu stehlen, ist dies sehr unwahrscheinlich. Siehe <a href="#changeMasterPassword">„Kann das Masterpasswort geändert werden?“</a>.
+			</li>
+			<li>
+				<h3>Was passiert, wenn ein Webseitenpasswort gestohlen wird?</h3>
+				Wenn ein Webseitenpasswort gestohlen wird, kann daraus unmöglich der Webseitenname, ein anderes Webseitenpasswort oder das Masterpasswort berechnet werden. In diesem Fall muss der Webseitenname schnellstmöglich geändert werden damit ein neues Webseitenpasswort berechnet wird, das dann auf der Webseite geändert werden muss. Siehe <a href="#changeWebsitePassword">„Kann ein Webseitenpasswort geändert werden?“</a>.
+			</li>
+			<li>
+				<h3>Akzeptieren alle Webseiten ihr berechnetes Webseitenpasswort?</h3>
+				Fast alle Webseiten akzeptieren die normalen lateinischen Groß- und Kleinbuchstaben sowie die arabischen Ziffern und die Sonderzeichen <span class="mono">#</span> und <span class="mono">@</span>in Passwörtern. Wenn eine Webseite ein numerisches Passwort (PIN) verlangt, kann <a href="#generateNumber">„PIN statt Passwort berechnen“</a> ausgewählt werden, damit eine Webseiten-PIN berechnet wird, die nur aus Ziffern besteht. Wenn ein Passwort oder eine PIN die maximale Länge überschreitet, können einfach so viele Zeichen wie nötig am Ende des Passworts oder der PIN weggelassen werden.
+			</li>
+		</ul>
+		<h2>ACHTUNG! Der Autor dieser Webseite, F1248, übernimmt keine Garantie für Sicherheit, Funktionaliät und Erreibarkeit dieses Passwort-Generators, es empfiet sich, ein offline-Version zu haben. Die Bentuztung dieser Webseite erfolgt auf eigene Gefahr.</h2>
+		<h2>Technische Dokumentation:</h2>
+		<h3>Der Hashwert wird wie folgt berechnet:</h3>
+		<ul>
+			<li>
+				Masterpasswort und Webseitenname werden zu einer Zeichenfolge zusammengesetzt.<br>
+				<span class="mono">Passwort</span> + <span class="mono">WEBSEITENNAME</span> → <span class="mono">PasswortWEBSEITENNAME</span>
+			</li>
+			<li>
+				Mit der <a href="https://github.com/brix/crypto-js">crypto-js-Bibliotetk</a> wird der <a href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">SHA-256-Hashwert</a> der Zeichenfolge berechnet.<br>
+				<span class="mono">PasswortWEBSEITENNAME</span> → <span class="mono longString">927E609B5C0184FCBA3B28D1F85C8F6DC03A798BE5347E8FD0604AD8D06B67BD</span>
+			</li>
+		</ul>
+		<h3>Eine Webseiten-PIN wird wie folgt berechnet:</h3>
+				<ul>
+					<li>
+						Der Hashwert wird in eine Dezimalzahl umgewandelt
+						<span class="mono longString">927E609B5C0184FCBA3B28D1F85C8F6DC03A798BE5347E8FD0604AD8D06B67BD</span> → <span class="mono longString">66260965379449350342370028844262299130226921730473109196283496164473034205117</span>
+					</li>
+					<li>
+						Die Webseiten-PIN besteht aus den letzten 16 Ziffern der Dezimalzahl.
+						<span class="mono longString">66260965379449350342370028844262299130226921730473109196283496164473034205117</span> → <span class="mono">6164473034205117</span>
+					</li>
+					<li>
+						Die Webseiten-PIN lautet <span class="mono">6164473034205117</span>.
+					</li>
+				</ul>
+		<h3>Ein Webseitenpasswort wird wie folgt berechnet:</h3>
+		<ul>
+			<li>
+				Am Anfang wird die Zeichenfolge <span class="mono">aA0#</span> hinzugefügt.
+			</li>
+			<li>
+				Die ersten 32 Ziffern des Hashwerts werden paarweise in 16 Binärzahlen umgewandelt.
+				<ul>
+					<li><span class="mono">92</span> → <span class="mono">10010010</span></li>
+					<li><span class="mono">7E</span> → <span class="mono">&nbsp;1111110</span></li>
+					<li><span class="mono">60</span> → <span class="mono">&nbsp;1100000</span></li>
+					<li><span class="mono">9B</span> → <span class="mono">10011011</span></li>
+					<li><span class="mono">……</span> → <span class="mono">……………………</span></li>
+				</ul>
+			</li>
+			<li>
+				Die Binärzahlen werden auf die letzten sechs Stellen gekürzt.
+				<ul>
+					<li><span class="mono">10010010</span> → <span class="mono">010010</span></li>
+					<li><span class="mono">&nbsp;1111110</span> → <span class="mono">111110</span></li>
+					<li><span class="mono">&nbsp;1100000</span> → <span class="mono">100000</span></li>
+					<li><span class="mono">10011011</span> → <span class="mono">011011</span></li>
+					<li><span class="mono">……………………</span> → <span class="mono">………………</span></li>
+				</ul>
+			</li>
+			<li>
+				Die Binärzahlen werden in Dezimalzahlen von 0 bis 63 umgewandelt.
+				<ul>
+					<li><span class="mono">010010</span> → <span class="mono">18</span></li>
+					<li><span class="mono">111110</span> → <span class="mono">62</span></li>
+					<li><span class="mono">100000</span> → <span class="mono">32</span></li>
+					<li><span class="mono">011011</span> → <span class="mono">27</span></li>
+					<li><span class="mono">………………</span> → <span class="mono">……</span></li>
+				</ul>
+			</li>
+			<li>
+				Die Dezimalzahl wird in ein Zeichen umgerechnet, indem das entsprechende Zeichen in der Zeichfolge 
+				Das Zeichen an der entsprechenden Stelle in der Zeichenfolge <span class="mono longString">ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789</span> dem Webseitenpasswort hinzugefügt.
+				<ul>
+					<li><span class="mono">18</span> → <span class="mono">S</span></li>
+					<li><span class="mono">62</span> → <span class="mono">&nbsp;</span></li>
+					<li><span class="mono">32</span> → <span class="mono">g</span></li>
+					<li><span class="mono">27</span> → <span class="mono">b</span></li>
+					<li><span class="mono">……</span> → <span class="mono">…</span></li>
+				</ul>
+			</li>
+			<li>
+				Das Webseitenpasswort lautet <span class="mono">SgbcBE867oR4cPt</span>.
+			</li>
+		</ul>
+		<br>
+		<p>2023, erstellt von <a href="https://github.com/F1248">F1248</a></p>
+		<p>Die Idee eines kryptographischen Hash-Passwort-Generators stammt von <a href="https://ss64.com/pass/">Simon Sheppard's Passwort-Generator</a>, dieser ist jedoch komplett selbst geschrieben.</p>
+		<p><a href="offline.zip">Quellcode herunterladen (Offline-Version)</a></p>
+		<p><a href="https://github.com/F1248/F1248.github.io">Quellcode auf Github</a></p>
+		<script src="script.js"></script>
+	</body>
+</html>
